@@ -1,1 +1,9 @@
 <h1>Apps index, home.</h1>
+
+<% if user_signed_in? %>
+	<%= link_to 'Create a new app', new_app_path %>
+<% else %>
+	<p>You must be loged in to create apps.</p>
+	
+	<%= link_to 'Create a new app', new_app_path %>
+<% end %>
