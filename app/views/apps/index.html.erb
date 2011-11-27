@@ -1,5 +1,14 @@
 <h1>Apps index, home.</h1>
 
+<% if @apps %>
+	<ul>
+	<% @apps.each do |app| %>
+		<li><%= link_to app.name, app %></li>
+	<% end %>
+	</ul>
+<% end %>
+
+
 <% if user_signed_in? %>
 	<%= link_to 'Create a new app', new_app_path %>
 <% else %>
