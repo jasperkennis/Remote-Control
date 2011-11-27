@@ -3,6 +3,8 @@ class InterfacesController < ApplicationController
 		@interfaces = Interface.all()
 	end
 	
+	
+	
 	def new
 		@interface = Interface.new
 		
@@ -11,6 +13,8 @@ class InterfacesController < ApplicationController
 			format.json { render :json => @post }
 		end
 	end
+	
+	
 	
 	def create	
 		# Prepare the names and paths
@@ -60,7 +64,32 @@ class InterfacesController < ApplicationController
 		end
 	end
 	
+	
+	
 	def show
 		@interface = Interface.find(params[:id])
+	end
+	
+	
+	
+	def unzip_file (file, destination)
+		Zip::ZipFile.open(file) { |zip_file|
+			zip_file.each { |f|
+				f_path=File.join(destination, f.name)
+				FileUtils.mkdir_p(File.dirname(f_path))
+				zip_file.extract(f, f_path) unless File.exist?(f_path)
+			}
+		}
+	end
+
+
+
+	def get_file_as_string(filename)
+		data = ''
+		f = File.open(filename, "r")
+		f.each_line do |line|
+			data += line
+		end
+		return data
 	end
 end
