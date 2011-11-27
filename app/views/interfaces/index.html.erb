@@ -1,0 +1,18 @@
+<h1>Interfaces index, home.</h1>
+
+<% if @interfaces %>
+	<ul>
+	<% @interfaces.each do |interface| %>
+		<li><%= link_to interface.name, interface %></li>
+	<% end %>
+	</ul>
+<% end %>
+
+
+<% if user_signed_in? %>
+	<%= link_to 'Create a new interface', new_interface_path %>
+<% else %>
+	<p>You must be loged in to create interfaces.</p>
+	
+	<%= link_to 'Create a new interface', new_interface_path %>
+<% end %>
