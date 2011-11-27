@@ -57,4 +57,7 @@ Remotecontrol::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  
+  # Host to use for the mailer. Or something.
+  config.action_mailer.default_url_options = { :host => 'http://remote-control.herokuapp.com/' }
 end
